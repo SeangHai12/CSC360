@@ -5,6 +5,59 @@ class bookNode:  # Binary Search Tree (BST)
         self.year = year
         self.left = None
         self.right = None
+        self.treeLevel = 1
+
+
+# Helper function to get level (height)
+def getLevel(node):
+    if not node:
+        return 0
+    return node.treeLevel
+
+
+# Get balance factor
+def getBalance(node):
+    if not node:
+        return 0
+    return getLevel(node.left) - getLevel(node.right)
+
+
+# Right rotation
+def rotateRight(unbalancedNode):
+    leftChild = unbalancedNode.left
+    middleSubtree = leftChild.right
+
+    # Perform rotation
+    leftChild.right = unbalancedNode
+    unbalancedNode.left = middleSubtree
+
+    # Update heights
+    unbalancedNode.treeLevel = 1 + max(
+        getLevel(unbalancedNode.left), getLevel(unbalancedNode.right)
+    )
+    leftChild.treeLevel = 1 + max(getLevel(leftChild.left), getLevel(leftChild.right))
+
+    return leftChild
+
+
+# Left rotation
+def rotateLeft(unbalancedNode):
+    rightChild = unbalancedNode.right
+    middleSubtree = rightChild.left
+
+    # Perform rotation
+    rightChild.left = unbalancedNode
+    unbalancedNode.right = middleSubtree
+
+    # Update heights
+    unbalancedNode.treeLevel = 1 + max(
+        getLevel(unbalancedNode.left), getLevel(unbalancedNode.right)
+    )
+    rightChild.treeLevel = 1 + max(
+        getLevel(rightChild.left), getLevel(rightChild.right)
+    )
+
+    return rightChild
 
 
 class BookLibrary:
