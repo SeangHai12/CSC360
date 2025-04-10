@@ -4,7 +4,8 @@ from data_Stucture import BookLibrary
 
 
 window = Tk()
-
+window.title("Library")
+window.iconbitmap("images/book.ico")
 library = BookLibrary()
 
 
@@ -44,15 +45,40 @@ def messageBox(title, text):
 
 # name_Entry
 name_input = Entry()
-name_input.pack()
+name_input.grid(row=1, column=1)
+
 
 # author_Entry
 author_input = Entry()
-author_input.pack()
+author_input.grid(row=2, column=1)
+
 
 # year_Entry
 year_input = Entry()
-year_input.pack()
+year_input.grid(row=3, column=1)
+
+# <------book_image------>
+book_image = PhotoImage(file="images/stack-of-books.png")
+book_label = Label()
+book_label.config(image=book_image)
+book_label.grid(row=0, column=1, pady=30)
+
+# <------Label------>
+
+# name_Label
+name_label = Label()
+name_label.config(text="Book name")
+name_label.grid(row=1, column=0, sticky="e")
+
+author_label = Label()
+author_label.config(
+    text="Author name",
+)
+author_label.grid(row=2, column=0, pady=10, padx=(30, 0), sticky="e")
+
+year_label = Label()
+year_label.config(text="Year")
+year_label.grid(row=3, column=0, sticky="e")
 
 
 # <------Button------>
@@ -65,23 +91,22 @@ insert_Button.config(
         name=name_input.get(), author=author_input.get(), year=int(year_input.get())
     ),
 )
-insert_Button.pack()
-
+insert_Button.grid(row=4, column=1, pady=(10, 0))
 
 # search_button
 search_Button = Button()
 search_Button.config(text="Search", command=lambda: search_book(name_input.get()))
-search_Button.pack()
+search_Button.grid(row=1, column=2, sticky="w", padx=(0, 30))
 
 # delete_button
 
 delete_Button = Button()
 delete_Button.config(text="Delete", command=lambda: delete_Func(name_input.get()))
-delete_Button.pack()
+delete_Button.grid(row=6, column=1, pady=(0, 10))
 
 # Display_button
 display_Button = Button()
-display_Button.config(text="display", command=display_book)
-display_Button.pack()
+display_Button.config(text="display", width=10, command=display_book)
+display_Button.grid(row=5, column=1, pady=10)
 
 window.mainloop()
