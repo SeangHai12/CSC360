@@ -109,4 +109,9 @@ display_Button = Button()
 display_Button.config(text="display", width=10, command=display_book)
 display_Button.grid(row=5, column=1, pady=10)
 
+exit_button = Button()
+exit_button.config(text="exit", command=lambda: window.destroy())
+exit_button.grid(row=7, column=1, pady=(0, 10))
+
+
 window.mainloop()
