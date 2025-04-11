@@ -33,7 +33,10 @@ def delete_Func(text):
 
 # function to display book
 def display_book():
-    messageBox("Library", library.display_books())
+    if library.display_books():
+        messageBox("Library", library.display_books())
+    else:
+        messageBox("Library", "Library don't have book yet.")
 
 
 # MessageBox
